@@ -6,6 +6,7 @@ public class Test {
     Musician musician2;
     Band band;
 
+    //Testing musician by setting up musician1 and musician2
     public void testMusician(){
         ArrayList<String> current_bands1 = new ArrayList<>();
         ArrayList<String> past_bands1 = new ArrayList<>();
@@ -46,8 +47,8 @@ public class Test {
 //        System.out.println("Roles: " + musician1.getRoles());
     }
 
+    //Testing bands using musician1 and musician2
     public void testBands(){
-        //Testing bands using musician1 and musician2
 
         ArrayList<Musician> musicians = new ArrayList<>();
         musicians.add(musician1);
