@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Data {
 
@@ -10,9 +11,32 @@ public class Data {
     ArrayList<Compilation> compilations;
     ArrayList<Track> tracks;
 
+    public Data(){
+        albums = new ArrayList<>();
+        libraries = new ArrayList<>();
+        musicians = new ArrayList<>();
+        bands = new ArrayList<>();
+        compilations = new ArrayList<>();
+        tracks = new ArrayList<>();
+    }
+
     public void addAlbum(Album album){
 
-
+        ArrayList<Track> albumTracks = album.tracks;
+        for(Track track : albumTracks){
+            String trackName = track.name;
+            boolean exists = false;
+            for(Track t : tracks){
+                if(Objects.equals(t.name, trackName)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some track in album not registered. Try again.");
+                break;
+            }
+        }
 
         albums.add(album);
     }
