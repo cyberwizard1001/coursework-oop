@@ -1,14 +1,27 @@
 import java.util.ArrayList;
 
-public class Compilation {
+public class Compilation extends Album{
+
     ArrayList<Album> albums;
     ArrayList<Track> tracks;
     ArrayList<String> artists;
 
-    public Compilation(ArrayList<Album> albums, ArrayList<Track> tracks, ArrayList<String> artists) {
+    public Compilation(String name, ArrayList<Album> albums, ArrayList<Track> tracks, ArrayList<String> artists) {
+        super(name, "compilation");
         this.albums = albums;
         this.tracks = tracks;
         this.artists = artists;
+    }
+
+    @Override
+    public ArrayList<Track> getTracks(){
+        ArrayList<Track> returnItems = new ArrayList<>(tracks);
+
+        for(Album album : albums){
+            returnItems.addAll(album.tracks);
+        }
+
+        return returnItems;
     }
 
     public ArrayList<Album> getAlbums() {
@@ -19,9 +32,6 @@ public class Compilation {
         this.albums = albums;
     }
 
-    public ArrayList<Track> getTracks() {
-        return tracks;
-    }
 
     public void setTracks(ArrayList<Track> tracks) {
         this.tracks = tracks;
