@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Test {
 
-    static public void main(String[] args){
+    Musician musician1;
+    Musician musician2;
+    Band band;
 
-        //Testing Musician
+    public void testMusician(){
         ArrayList<String> current_bands1 = new ArrayList<>();
         ArrayList<String> past_bands1 = new ArrayList<>();
         ArrayList<String> roles1 = new ArrayList<>();
@@ -23,11 +25,11 @@ public class Test {
         roles1.add("Singer");
         roles2.add("Singer");
 
-        Musician musician1 = new Musician("Harry Styles", false, current_bands1, 31, past_bands1, roles1 );
-        Musician musician2 = new Musician("Bruno Mars", true, current_bands2, 27, past_bands2, roles2 );
+        musician1 = new Musician("Harry Styles", false, current_bands1, 31, past_bands1, roles1 );
+        musician2 = new Musician("Bruno Mars", true, current_bands2, 27, past_bands2, roles2 );
 
-        musician1.printMusician();
-        musician2.printMusician();
+//        musician1.printMusician();
+//        musician2.printMusician();
 
         musician1.setName("Harry Styles updated");
         musician1.setAge(21);
@@ -35,12 +37,36 @@ public class Test {
         musician1.updatePastBands("One Direction");
         musician1.setCurrent_bands(current_bands2);
 
-        System.out.println("Musician 1 post set methods: ");
-        System.out.println("Name: " + musician1.getName());
-        System.out.println("Age: " + musician1.getAge());
-        System.out.println("Band Status: " + musician1.getBandStatus());
-        System.out.println("Current Bands: " + musician1.getCurrent_bands());
-        System.out.println("Past Bands: " + musician1.getPast_bands());
-        System.out.println("Roles: " + musician1.getRoles());
+//        System.out.println("Musician 1 post set methods: ");
+//        System.out.println("Name: " + musician1.getName());
+//        System.out.println("Age: " + musician1.getAge());
+//        System.out.println("Band Status: " + musician1.getBandStatus());
+//        System.out.println("Current Bands: " + musician1.getCurrent_bands());
+//        System.out.println("Past Bands: " + musician1.getPast_bands());
+//        System.out.println("Roles: " + musician1.getRoles());
+    }
+
+    public void testBands(){
+        //Testing bands using musician1 and musician2
+
+        ArrayList<Musician> musicians = new ArrayList<>();
+        musicians.add(musician1);
+
+
+        band = new Band("One Direction", 2001, musicians);
+        band.printBand();
+
+        musicians.add(musician2);
+
+        band.setName("Two Directions");
+        band.setEstablished(2023);
+        band.setMusicians(musicians);
+
+        System.out.println("\nValues post update Band: ");
+        System.out.println("Band name: " + band.getName());
+        System.out.println("Established: " + band.getEstablished());
+        System.out.println("Members: ");
+        band.printMusicians();
+
     }
 }
