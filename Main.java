@@ -32,5 +32,8 @@ public class Main {
         //data.removeTrack("Track 2");
 
         data.addLibrary(new Library("Library 1", tracks, albums));
+        data.libraries.get(0).getTracks();
+
+        data.addCompilation(new Compilation("Compilation 1", albums, tracks, null));
     }
 }

@@ -184,7 +184,48 @@ public class Data {
 
     //Compilation
     public void addCompilation(Compilation compilation){
-        compilations.add(compilation);
+        boolean add = true;
+        ArrayList<Track> compilationTracks = compilation.tracks;
+        ArrayList<Album> compilationAlbums = compilation.albums;
+
+        for(Track track : compilationTracks){
+            String trackName = track.name;
+            boolean exists = false;
+            for(Track t : tracks){
+                if(Objects.equals(t.name, trackName)){
+                    exists = true;
+//                    System.out.println(trackName);
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some track in compilation not registered. Try again.");
+                add = false;
+                break;
+            }
+        }
+
+        for(Album album : compilationAlbums){
+            String albumName = album.name;
+            boolean exists = false;
+            for(Album a : albums){
+                if(Objects.equals(a.name, albumName)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some album in compilation not registered. Try again.");
+                add = false;
+                break;
+            }
+        }
+
+        if(add){
+            compilations.add(compilation);
+            System.out.println("Compilation " + compilation.name + " added.");
+        }
+
     }
 
 
