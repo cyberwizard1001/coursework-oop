@@ -19,8 +19,14 @@ public class Library {
         this.name = name;
     }
 
-    public ArrayList<Track> getTracks() {
-        return tracks;
+    public ArrayList<Track> getTracks(){
+        ArrayList<Track> returnItems = new ArrayList<>(tracks);
+
+        for(Album album : albums){
+            returnItems.addAll(album.tracks);
+        }
+
+        return returnItems;
     }
 
     public void setTracks(ArrayList<Track> tracks) {
