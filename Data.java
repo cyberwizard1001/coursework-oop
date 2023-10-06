@@ -11,6 +11,9 @@ public class Data {
     ArrayList<Track> tracks;
 
     public void addAlbum(Album album){
+
+
+
         albums.add(album);
     }
 
