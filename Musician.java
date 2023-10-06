@@ -75,6 +75,6 @@ public class Musician {
         System.out.println("Past bands: " + past_bands);
     }
 
-    //Write function to move current_bands to past_bands when band_status is set to false
+    //TODO: Write function to move current_bands to past_bands when band_status is set to false
 }
 
