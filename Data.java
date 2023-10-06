@@ -20,41 +20,15 @@ public class Data {
         tracks = new ArrayList<>();
     }
 
-    public void addAlbum(Album album){
 
-        ArrayList<Track> albumTracks = album.tracks;
-        boolean add = true;
-        for(Track track : albumTracks){
-            String trackName = track.name;
-            boolean exists = false;
-            for(Track t : tracks){
-                if(Objects.equals(t.name, trackName)){
-                    exists = true;
-                    break;
-                }
-            }
-            if(!exists){
-                System.out.println("Some track in album not registered. Try again.");
-                add = false;
-                break;
-            }
-        }
-        if(add){
-            albums.add(album);
-            System.out.println("Album " + album.name + " added.");
-        }
-
-    }
-
-    public void addLibrary(Library library){
-        libraries.add(library);
-    }
-
+    //Musician
     public void addMusician(Musician musician){
         System.out.println("Musician " + musician.name + " added.");
         musicians.add(musician);
     }
 
+
+    //Band
     public void addBand(Band band){
         boolean add = true;
         for(Musician musician : band.musicians){
@@ -80,10 +54,8 @@ public class Data {
 
     }
 
-    public void addCompilation(Compilation compilation){
-        compilations.add(compilation);
-    }
 
+    //Track
     public void addTrack(Track track){
         boolean added = false;
         if(track.band){
@@ -133,6 +105,88 @@ public class Data {
             System.out.println("Track " + name + " not found.");
         }
     }
+
+
+    //Album
+    public void addAlbum(Album album){
+
+        ArrayList<Track> albumTracks = album.tracks;
+        boolean add = true;
+        for(Track track : albumTracks){
+            String trackName = track.name;
+            boolean exists = false;
+            for(Track t : tracks){
+                if(Objects.equals(t.name, trackName)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some track in album not registered. Try again.");
+                add = false;
+                break;
+            }
+        }
+        if(add){
+            albums.add(album);
+            System.out.println("Album " + album.name + " added.");
+        }
+
+    }
+
+
+    //Library
+    public void addLibrary(Library library){
+        boolean add = true;
+        ArrayList<Track> libraryTracks = library.tracks;
+        ArrayList<Album> libraryAlbums = library.albums;
+
+        for(Track track : libraryTracks){
+            String trackName = track.name;
+            boolean exists = false;
+            for(Track t : tracks){
+                if(Objects.equals(t.name, trackName)){
+                    exists = true;
+//                    System.out.println(trackName);
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some track in library not registered. Try again.");
+                add = false;
+                break;
+            }
+        }
+
+        for(Album album : libraryAlbums){
+            String albumName = album.name;
+            boolean exists = false;
+            for(Album a : albums){
+                if(Objects.equals(a.name, albumName)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                System.out.println("Some album in library not registered. Try again.");
+                add = false;
+                break;
+            }
+        }
+
+        if(add){
+            libraries.add(library);
+            System.out.println("Library " + library.name + " added.");
+        }
+
+    }
+
+
+    //Compilation
+    public void addCompilation(Compilation compilation){
+        compilations.add(compilation);
+    }
+
 
 
 }
