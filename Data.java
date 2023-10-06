@@ -23,6 +23,7 @@ public class Data {
     public void addAlbum(Album album){
 
         ArrayList<Track> albumTracks = album.tracks;
+        boolean add = true;
         for(Track track : albumTracks){
             String trackName = track.name;
             boolean exists = false;
@@ -34,11 +35,15 @@ public class Data {
             }
             if(!exists){
                 System.out.println("Some track in album not registered. Try again.");
+                add = false;
                 break;
             }
         }
+        if(add){
+            albums.add(album);
+            System.out.println("Album " + album.name + " added.");
+        }
 
-        albums.add(album);
     }
 
     public void addLibrary(Library library){
@@ -46,11 +51,33 @@ public class Data {
     }
 
     public void addMusician(Musician musician){
+        System.out.println("Musician " + musician.name + " added.");
         musicians.add(musician);
     }
 
     public void addBand(Band band){
-        bands.add(band);
+        boolean add = true;
+        for(Musician musician : band.musicians){
+            boolean exists = false;
+            String musician_name = musician.getName();
+            for(Musician m : musicians){
+                if(musician_name.equals(m.name)){
+                    exists = true;
+                    break;
+                }
+            }
+
+            if(!exists){
+                System.out.println("Some artist not registered on database. Try again.");
+                add = false;
+            }
+
+        }
+        if(add){
+            System.out.println("Band " + band.name + " added.");
+            bands.add(band);
+        }
+
     }
 
     public void addCompilation(Compilation compilation){
@@ -103,7 +130,7 @@ public class Data {
         }
 
         if(!deleted){
-            System.out.println("Track not found");
+            System.out.println("Track " + name + " not found.");
         }
     }
 
