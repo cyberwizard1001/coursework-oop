@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Musician {
 
-    public Musician(String name, Boolean band_status, ArrayList<String> current_bands, int age, ArrayList<String> past_bands, ArrayList<String> roles){
+    public Musician(String name, Boolean band_status, ArrayList<String> current_bands, int age, ArrayList<String> past_bands, ArrayList<String> roles) {
         this.name = name;
         this.band_status = band_status;
         this.age = age;
@@ -18,7 +18,7 @@ public class Musician {
     ArrayList<String> past_bands;
     ArrayList<String> roles;
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -38,7 +38,7 @@ public class Musician {
         return current_bands;
     }
 
-    public Boolean getBandStatus(){
+    public Boolean getBandStatus() {
         return band_status;
     }
 
@@ -58,7 +58,7 @@ public class Musician {
         this.past_bands.add(band);
     }
 
-    public void setCurrent_bands(ArrayList<String> current_bands){
+    public void setCurrent_bands(ArrayList<String> current_bands) {
         this.current_bands = current_bands;
     }
 
@@ -66,7 +66,7 @@ public class Musician {
         this.roles = roles;
     }
 
-    public void printMusician(){
+    public void printMusician() {
         System.out.println("Artist: " + name);
         System.out.println("Age: " + age);
         System.out.println("Roles: " + roles);

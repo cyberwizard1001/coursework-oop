@@ -35,12 +35,13 @@ public class Band {
         this.name = name;
     }
 
-    public void printMusicians(){
+    public void printMusicians() {
         for (Musician musician : musicians) {
             musician.printMusician();
         }
     }
-    public void printBand(){
+
+    public void printBand() {
         System.out.println("Band name: " + name);
         System.out.println("Established: " + established);
         System.out.println("Musicians: ");

@@ -7,7 +7,7 @@ public class Test {
     Band band;
 
     //Testing musician by setting up musician1 and musician2
-    public void testMusician(){
+    public void testMusician() {
         ArrayList<String> current_bands1 = new ArrayList<>();
         ArrayList<String> past_bands1 = new ArrayList<>();
         ArrayList<String> roles1 = new ArrayList<>();
@@ -26,8 +26,8 @@ public class Test {
         roles1.add("Singer");
         roles2.add("Singer");
 
-        musician1 = new Musician("Harry Styles", false, current_bands1, 31, past_bands1, roles1 );
-        musician2 = new Musician("Bruno Mars", true, current_bands2, 27, past_bands2, roles2 );
+        musician1 = new Musician("Harry Styles", false, current_bands1, 31, past_bands1, roles1);
+        musician2 = new Musician("Bruno Mars", true, current_bands2, 27, past_bands2, roles2);
 
 //        musician1.printMusician();
 //        musician2.printMusician();
@@ -48,7 +48,7 @@ public class Test {
     }
 
     //Testing bands using musician1 and musician2
-    public void testBands(){
+    public void testBands() {
 
         ArrayList<Musician> musicians = new ArrayList<>();
         musicians.add(musician1);

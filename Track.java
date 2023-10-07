@@ -14,7 +14,7 @@ public class Track {
     ArrayList<String> guest_artists;
     int play_count;
 
-    public Track(String name, String artist, Boolean band, Date date, double length, int rating, String location, double size, ArrayList<String> guest_artists){
+    public Track(String name, String artist, Boolean band, Date date, double length, int rating, String location, double size, ArrayList<String> guest_artists) {
         this.name = name;
         this.artist = artist;
         this.band = band;
@@ -28,10 +28,10 @@ public class Track {
         this.checkDetails();
     }
 
-    private boolean checkDetails(){
+    private boolean checkDetails() {
         boolean valid = false;
 
-        if(this.band){
+        if (this.band) {
 
         }
 

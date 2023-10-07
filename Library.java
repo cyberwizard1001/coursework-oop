@@ -5,7 +5,7 @@ public class Library {
     ArrayList<Track> tracks;
     ArrayList<Album> albums;
 
-    public Library(String name, ArrayList<Track> tracks, ArrayList<Album> albums){
+    public Library(String name, ArrayList<Track> tracks, ArrayList<Album> albums) {
         this.name = name;
         this.tracks = tracks;
         this.albums = albums;
@@ -19,14 +19,18 @@ public class Library {
         this.name = name;
     }
 
-    public ArrayList<Track> getTracks(){
+    public ArrayList<String> getTracks() {
         ArrayList<Track> returnItems = new ArrayList<>(tracks);
+        ArrayList<String> returnStrings = new ArrayList<>();
 
-        for(Album album : albums){
+        for (Album album : albums) {
             returnItems.addAll(album.tracks);
         }
 
-        return returnItems;
+        for (Track track: returnItems) {
+            returnStrings.add(track.name);
+        }
+        return returnStrings;
     }
 
     public void setTracks(ArrayList<Track> tracks) {

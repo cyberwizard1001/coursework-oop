@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Main {
-    static public void main(String[] args){
+    static public void main(String[] args) {
 //        Test test = new Test();
 //        test.testMusician();
 //        test.testBands();
@@ -32,8 +32,9 @@ public class Main {
         //data.removeTrack("Track 2");
 
         data.addLibrary(new Library("Library 1", tracks, albums));
-        data.libraries.get(0).getTracks();
+        System.out.println(data.libraries.get(0).getTracks());
 
         data.addCompilation(new Compilation("Compilation 1", albums, tracks, null));
+        System.out.println(data.compilations.get(0).getTracks());
     }
 }

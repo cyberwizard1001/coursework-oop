@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MusicLibrary {
@@ -50,8 +51,192 @@ public class MusicLibrary {
         System.out.print("Choose a number: ");
         input1 = scanner.nextInt();
 
-        //TODO: Finish view interface
+       switch(input1){
+           case 1: {
+               viewMusician();
+           }
+           case 2: {
+               viewBand();
+           }
+           case 3: {
+               viewTracks();
+           }
+           case 4:{
+               viewAlbums();
+           }
+           case 5:{
+               viewLibraries();
+           }
+           case 6:{
+               viewCompilations();
+           }
+       }
     }
+
+    private void viewCompilations() {
+        int x = 1;
+        for(Compilation c : data.compilations){
+            System.out.println(x + " " + c.getName());
+            x++;
+        }
+        System.out.print("Enter number to see tracks in compilation: ");
+        int choice = scanner.nextInt();
+        if(choice<data.compilations.size()){
+            Compilation chosenCompilation = data.compilations.get(choice-1);
+            for(Track t : chosenCompilation.tracks){
+                System.out.println(t.getName());
+            }
+            System.out.println("Album tracks: ");
+            for(Album a : chosenCompilation.albums){
+                System.out.println("Album: " + a.getName());
+                for(Track t : a.tracks) {
+                    System.out.println(t.getName());
+                }
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try
+        {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        }
+        catch(Exception ignored)
+        {}
+    }
+
+    private void viewLibraries() {
+        int x = 1;
+        for(Library l : data.libraries){
+            System.out.println(x + " " + l.getName());
+            x++;
+        }
+        System.out.print("Enter number to see tracks in library: ");
+        int choice = scanner.nextInt();
+        if(choice<data.libraries.size()){
+            Library chosenLib = data.libraries.get(choice-1);
+            for(Track t : chosenLib.tracks){
+                System.out.println(t.getName());
+            }
+            System.out.println("Album tracks: ");
+            for(Album a : chosenLib.albums){
+                System.out.println("Album: " + a.getName());
+                for(Track t : a.tracks) {
+                    System.out.println(t.getName());
+                }
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try
+        {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        }
+        catch(Exception ignored)
+        {}
+    }
+
+    private void viewAlbums() {
+        int x = 1;
+        for(Album a : data.albums){
+            System.out.println(x + " " + a.getName());
+            x++;
+        }
+        System.out.print("Enter number to see songs in album: ");
+        int choice = scanner.nextInt();
+        if(choice<data.albums.size()){
+            Album chosenAlbum = data.albums.get(choice-1);
+            for(Track t : chosenAlbum.tracks){
+                System.out.println(t.getName());
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try
+        {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        }
+        catch(Exception ignored)
+        {}
+    }
+
+    private void viewTracks() {
+        int x = 1;
+        for(Track t : data.tracks){
+            System.out.println(x + " " + t.getName());
+            x++;
+        }
+        System.out.println("Press Enter key to go back...");
+        try
+        {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        }
+        catch(Exception ignored)
+        {}
+    }
+
+    private void viewBand() {
+        int x = 1;
+        for(Band band : data.bands){
+            System.out.println(x + " " + band.getName());
+            x++;
+        }
+        System.out.println("\nEnter a number to see songs by band / 0 to go back");
+        int input2 = scanner.nextInt();
+        if(input2 == 0){
+            viewInterface();
+        }
+        else{
+            String artistName = data.musicians.get(input2-1).getName();
+            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
+            for(String song : songsByArtist){
+                System.out.println(song);
+            }
+            System.out.println("Press Enter key to go back...");
+            try
+            {
+                System.in.read();
+                scanner.nextLine();
+                viewInterface();
+            }
+            catch(Exception ignored)
+            {}
+        }
+    }
+
+    private void viewMusician() {
+        int x = 1;
+        for(Musician musician : data.musicians){
+            System.out.println(x + " " + musician.getName());
+            x++;
+        }
+        System.out.println("\nEnter a number to see songs by musician / 0 to go back");
+        int input2 = scanner.nextInt();
+        if(input2 == 0){
+            viewInterface();
+        }
+        else{
+            String artistName = data.musicians.get(input2-1).getName();
+            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
+            for(String song : songsByArtist){
+                System.out.println(song);
+            }
+            System.out.println("Press Enter key to go back...");
+            try
+            {
+                System.in.read();
+                scanner.nextLine();
+                viewInterface();
+            }
+            catch(Exception ignored)
+            {}
+        }
+    }
+
 
     public void addInterface() {
         int input1 = 0;
@@ -100,6 +285,7 @@ public class MusicLibrary {
                     int x = 1;
                     for (Track track : data.tracks) {
                         System.out.println(x + " " + track.getName());
+                        x++;
                     }
 
                     System.out.print("Choose a number: ");
@@ -111,6 +297,7 @@ public class MusicLibrary {
                     int x = 1;
                     for (Album album : data.albums) {
                         System.out.println(x + " " + album.getName());
+                        x++;
                     }
 
                     System.out.print("Choose a number: ");
@@ -122,6 +309,7 @@ public class MusicLibrary {
                     int x = 1;
                     for (Library library : data.libraries) {
                         System.out.println(x + " " + library.getName());
+                        x++;
                     }
 
                     System.out.print("Choose a number: ");
@@ -133,6 +321,7 @@ public class MusicLibrary {
                     int x = 1;
                     for (Compilation compilation : data.compilations) {
                         System.out.println(x + " " + compilation.getName());
+                        x++;
                     }
 
                     System.out.print("Choose a number: ");

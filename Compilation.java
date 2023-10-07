@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Compilation extends Album{
+public class Compilation extends Album {
 
     ArrayList<Album> albums;
     ArrayList<Track> tracks;
@@ -14,14 +14,19 @@ public class Compilation extends Album{
     }
 
     @Override
-    public ArrayList<Track> getTracks(){
+    public ArrayList<String> getTracks() {
         ArrayList<Track> returnItems = new ArrayList<>(tracks);
+        ArrayList<String> returnStrings = new ArrayList<>();
 
-        for(Album album : albums){
+        for (Album album : albums) {
             returnItems.addAll(album.tracks);
         }
 
-        return returnItems;
+        for (Track track : returnItems){
+            returnStrings.add(track.name);
+        }
+
+        return returnStrings;
     }
 
     public ArrayList<Album> getAlbums() {
