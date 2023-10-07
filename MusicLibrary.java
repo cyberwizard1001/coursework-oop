@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MusicLibrary {
@@ -51,192 +53,27 @@ public class MusicLibrary {
         System.out.print("Choose a number: ");
         input1 = scanner.nextInt();
 
-       switch(input1){
-           case 1: {
-               viewMusician();
-           }
-           case 2: {
-               viewBand();
-           }
-           case 3: {
-               viewTracks();
-           }
-           case 4:{
-               viewAlbums();
-           }
-           case 5:{
-               viewLibraries();
-           }
-           case 6:{
-               viewCompilations();
-           }
-       }
-    }
-
-    private void viewCompilations() {
-        int x = 1;
-        for(Compilation c : data.compilations){
-            System.out.println(x + " " + c.getName());
-            x++;
-        }
-        System.out.print("Enter number to see tracks in compilation: ");
-        int choice = scanner.nextInt();
-        if(choice<data.compilations.size()){
-            Compilation chosenCompilation = data.compilations.get(choice-1);
-            for(Track t : chosenCompilation.tracks){
-                System.out.println(t.getName());
+        switch (input1) {
+            case 1: {
+                viewMusician();
             }
-            System.out.println("Album tracks: ");
-            for(Album a : chosenCompilation.albums){
-                System.out.println("Album: " + a.getName());
-                for(Track t : a.tracks) {
-                    System.out.println(t.getName());
-                }
+            case 2: {
+                viewBand();
             }
-        }
-        System.out.println("Press Enter key to go back...");
-        try
-        {
-            System.in.read();
-            scanner.nextLine();
-            viewInterface();
-        }
-        catch(Exception ignored)
-        {}
-    }
-
-    private void viewLibraries() {
-        int x = 1;
-        for(Library l : data.libraries){
-            System.out.println(x + " " + l.getName());
-            x++;
-        }
-        System.out.print("Enter number to see tracks in library: ");
-        int choice = scanner.nextInt();
-        if(choice<data.libraries.size()){
-            Library chosenLib = data.libraries.get(choice-1);
-            for(Track t : chosenLib.tracks){
-                System.out.println(t.getName());
+            case 3: {
+                viewTracks();
             }
-            System.out.println("Album tracks: ");
-            for(Album a : chosenLib.albums){
-                System.out.println("Album: " + a.getName());
-                for(Track t : a.tracks) {
-                    System.out.println(t.getName());
-                }
+            case 4: {
+                viewAlbums();
             }
-        }
-        System.out.println("Press Enter key to go back...");
-        try
-        {
-            System.in.read();
-            scanner.nextLine();
-            viewInterface();
-        }
-        catch(Exception ignored)
-        {}
-    }
-
-    private void viewAlbums() {
-        int x = 1;
-        for(Album a : data.albums){
-            System.out.println(x + " " + a.getName());
-            x++;
-        }
-        System.out.print("Enter number to see songs in album: ");
-        int choice = scanner.nextInt();
-        if(choice<data.albums.size()){
-            Album chosenAlbum = data.albums.get(choice-1);
-            for(Track t : chosenAlbum.tracks){
-                System.out.println(t.getName());
+            case 5: {
+                viewLibraries();
             }
-        }
-        System.out.println("Press Enter key to go back...");
-        try
-        {
-            System.in.read();
-            scanner.nextLine();
-            viewInterface();
-        }
-        catch(Exception ignored)
-        {}
-    }
-
-    private void viewTracks() {
-        int x = 1;
-        for(Track t : data.tracks){
-            System.out.println(x + " " + t.getName());
-            x++;
-        }
-        System.out.println("Press Enter key to go back...");
-        try
-        {
-            System.in.read();
-            scanner.nextLine();
-            viewInterface();
-        }
-        catch(Exception ignored)
-        {}
-    }
-
-    private void viewBand() {
-        int x = 1;
-        for(Band band : data.bands){
-            System.out.println(x + " " + band.getName());
-            x++;
-        }
-        System.out.println("\nEnter a number to see songs by band / 0 to go back");
-        int input2 = scanner.nextInt();
-        if(input2 == 0){
-            viewInterface();
-        }
-        else{
-            String artistName = data.musicians.get(input2-1).getName();
-            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
-            for(String song : songsByArtist){
-                System.out.println(song);
+            case 6: {
+                viewCompilations();
             }
-            System.out.println("Press Enter key to go back...");
-            try
-            {
-                System.in.read();
-                scanner.nextLine();
-                viewInterface();
-            }
-            catch(Exception ignored)
-            {}
         }
     }
-
-    private void viewMusician() {
-        int x = 1;
-        for(Musician musician : data.musicians){
-            System.out.println(x + " " + musician.getName());
-            x++;
-        }
-        System.out.println("\nEnter a number to see songs by musician / 0 to go back");
-        int input2 = scanner.nextInt();
-        if(input2 == 0){
-            viewInterface();
-        }
-        else{
-            String artistName = data.musicians.get(input2-1).getName();
-            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
-            for(String song : songsByArtist){
-                System.out.println(song);
-            }
-            System.out.println("Press Enter key to go back...");
-            try
-            {
-                System.in.read();
-                scanner.nextLine();
-                viewInterface();
-            }
-            catch(Exception ignored)
-            {}
-        }
-    }
-
 
     public void addInterface() {
         int input1 = 0;
@@ -260,15 +97,18 @@ public class MusicLibrary {
             int input1 = 0, input2 = 0;
             System.out.println("Play music");
             System.out.println("Pick your poison!");
-            System.out.println("1. Search (song, artist, libraries, compilation albums)");
-            System.out.println("2. List");
+            System.out.println("1. Universal Search (song, artist, libraries, compilation albums)");
+            System.out.println("2. Choose from list");
             System.out.println("Any key to go to home menu");
 
             System.out.print("Choose a number: ");
             input1 = scanner.nextInt();
 
             if (input1 == 1) {
-                //TODO: Write code for universal search
+                System.out.println("Universal search");
+                System.out.print("Enter a string: ");
+                String searchString = scanner.nextLine();
+                universalSearch(searchString);
             } else if (input1 == 2) {
                 System.out.println("List Menu");
                 System.out.println("Pick your poison!");
@@ -343,5 +183,253 @@ public class MusicLibrary {
         }
 
 
+    }
+
+    private void universalSearch(String searchString) {
+        LinkedHashMap<String, String> searchResults = new LinkedHashMap<>();
+        ArrayList<String> searchResultsString = new ArrayList<>();
+        String choice;
+        int count = 0;
+        //Musicians
+        System.out.println("Musicians:");
+        for(Musician m : data.musicians){
+            if(m.getName().contains(searchString)){
+                System.out.println((count+1) + " " + m.getName());
+                searchResults.put(m.getName(), "Musician");
+                searchResultsString.add(m.getName());
+                count++;
+            }
+        }
+        //Bands
+        System.out.println("Bands:");
+        for(Band b : data.bands){
+            if(b.getName().contains(searchString)){
+                System.out.println((count+1) + " " + b.getName());
+                searchResults.put(b.getName(), "Band");
+                searchResultsString.add(b.getName());
+                count++;
+            }
+        }
+        //Tracks
+        System.out.println("Tracks:");
+        for(Track t : data.tracks){
+            if(t.getName().contains(searchString)){
+                System.out.println((count+1) + " " + t.getName());
+                searchResults.put(t.getName(), "Track");
+                searchResultsString.add(t.getName());
+                count++;
+            }
+        }
+        //Albums
+        System.out.println("Albums:");
+        for(Album a : data.albums){
+            if(a.getName().contains(searchString)){
+                System.out.println((count+1) + " " + a.getName());
+                searchResults.put(a.getName(), "Album");
+                searchResultsString.add(a.getName());
+                count++;
+            }
+        }
+        //Libraries
+        System.out.println("Libraries");
+        for(Library l : data.libraries){
+            if(l.getName().contains(searchString)){
+                System.out.println((count+1) + " " + l.getName());
+                searchResults.put(l.getName(), "Library");
+                searchResultsString.add(l.getName());
+                count++;
+            }
+        }
+        //Compilation Albums
+        System.out.println("Compilation Albums:");
+        for(Compilation c: data.compilations){
+            if(c.getName().contains(searchString)){
+                System.out.println((count+1) + " " + c.getName());
+                searchResults.put(c.getName(), "Compilation" );
+                searchResultsString.add(c.getName());
+                count++;
+            }
+        }
+
+        if(count==0){
+            System.out.println("Sorry, couldn't find any results :\\");
+            System.out.println("Press Enter key to go back...");
+            try {
+                System.in.read();
+                scanner.nextLine();
+                viewInterface();
+            } catch (Exception ignored) {
+            }
+        }
+
+        else{
+            System.out.print("Enter a number to play relevant content: ");
+            choice = searchResultsString.get(scanner.nextInt()-1);
+            playSongFromSearch(searchResults, choice);
+        }
+
+    }
+
+    private void playSongFromSearch(LinkedHashMap<String, String> searchResults, String choice) {
+        String type = searchResults.get(choice);
+        switch (type){
+            case "Musician":{}
+            case "Band": {}
+            case "Track": {}
+            case "Album": {}
+            case "Library": {}
+            case "Compilation": {}
+        }
+        //TODO: Complete method
+    }
+
+    private void viewCompilations() {
+        int x = 1;
+        for (Compilation c : data.compilations) {
+            System.out.println(x + " " + c.getName());
+            x++;
+        }
+        System.out.print("Enter number to see tracks in compilation: ");
+        int choice = scanner.nextInt();
+        if (choice < data.compilations.size()) {
+            Compilation chosenCompilation = data.compilations.get(choice - 1);
+            for (Track t : chosenCompilation.tracks) {
+                System.out.println(t.getName());
+            }
+            System.out.println("Album tracks: ");
+            for (Album a : chosenCompilation.albums) {
+                System.out.println("Album: " + a.getName());
+                for (Track t : a.tracks) {
+                    System.out.println(t.getName());
+                }
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void viewLibraries() {
+        int x = 1;
+        for (Library l : data.libraries) {
+            System.out.println(x    + " " + l.getName());
+            x++;
+        }
+        System.out.print("Enter number to see tracks in library: ");
+        int choice = scanner.nextInt();
+        if (choice < data.libraries.size()) {
+            Library chosenLib = data.libraries.get(choice - 1);
+            for (Track t : chosenLib.tracks) {
+                System.out.println(t.getName());
+            }
+            System.out.println("Album tracks: ");
+            for (Album a : chosenLib.albums) {
+                System.out.println("Album: " + a.getName());
+                for (Track t : a.tracks) {
+                    System.out.println(t.getName());
+                }
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void viewAlbums() {
+        int x = 1;
+        for (Album a : data.albums) {
+            System.out.println(x + " " + a.getName());
+            x++;
+        }
+        System.out.print("Enter number to see songs in album: ");
+        int choice = scanner.nextInt();
+        if (choice < data.albums.size()) {
+            Album chosenAlbum = data.albums.get(choice - 1);
+            for (Track t : chosenAlbum.tracks) {
+                System.out.println(t.getName());
+            }
+        }
+        System.out.println("Press Enter key to go back...");
+        try {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void viewTracks() {
+        int x = 1;
+        for (Track t : data.tracks) {
+            System.out.println(x + " " + t.getName());
+            x++;
+        }
+        System.out.println("Press Enter key to go back...");
+        try {
+            System.in.read();
+            scanner.nextLine();
+            viewInterface();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void viewBand() {
+        int x = 1;
+        for (Band band : data.bands) {
+            System.out.println(x + " " + band.getName());
+            x++;
+        }
+        System.out.println("\nEnter a number to see songs by band / 0 to go back");
+        int input2 = scanner.nextInt();
+        if (input2 == 0) {
+            viewInterface();
+        } else {
+            String artistName = data.musicians.get(input2 - 1).getName();
+            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
+            for (String song : songsByArtist) {
+                System.out.println(song);
+            }
+            System.out.println("Press Enter key to go back...");
+            try {
+                System.in.read();
+                scanner.nextLine();
+                viewInterface();
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    private void viewMusician() {
+        int x = 1;
+        for (Musician musician : data.musicians) {
+            System.out.println(x + " " + musician.getName());
+            x++;
+        }
+        System.out.println("\nEnter a number to see songs by musician / 0 to go back");
+        int input2 = scanner.nextInt();
+        if (input2 == 0) {
+            viewInterface();
+        } else {
+            String artistName = data.musicians.get(input2 - 1).getName();
+            ArrayList<String> songsByArtist = data.listSongsByArtist(artistName);
+            for (String song : songsByArtist) {
+                System.out.println(song);
+            }
+            System.out.println("Press Enter key to go back...");
+            try {
+                System.in.read();
+                scanner.nextLine();
+                viewInterface();
+            } catch (Exception ignored) {
+            }
+        }
     }
 }
