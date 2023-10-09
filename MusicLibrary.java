@@ -85,6 +85,7 @@ public class MusicLibrary {
         System.out.println("4. Album");
         System.out.println("5. Library");
         System.out.println("6. Compilation Album");
+        System.out.println("7. Go back");
 
         try{
             System.out.print("Choose a number: ");
@@ -121,6 +122,9 @@ public class MusicLibrary {
                 viewCompilations();
                 break;
             }
+            case 7: {
+                homeInterface();
+            }
             default:
                 System.out.println("Enter a valid number");
                 scanner.nextLine();
@@ -131,13 +135,13 @@ public class MusicLibrary {
     public void addInterface() {
         int input1 = 0;
         System.out.println("Add music");
-        System.out.println("Pick your poison!");
         System.out.println("1. Musician");
         System.out.println("2. Band");
         System.out.println("3. Track");
         System.out.println("4. Album");
         System.out.println("5. Library");
         System.out.println("6. Compilation Album");
+        System.out.println("7. Go back");
 
         System.out.print("Choose a number: ");
         try {
@@ -148,7 +152,159 @@ public class MusicLibrary {
             addInterface();
         }
 
-        //TODO: Finish add interface
+        switch(input1){
+            case 1: {
+                addMusician();
+                break;
+            }
+            case 2: {
+                addBand();
+                break;
+            }
+            case 3: {
+                addTrack();
+                break;
+            }
+            case 4: {
+                break;
+            }
+            case 5: {
+                break;
+            }
+            case 6: {
+                break;
+            }
+            case 7: {
+                break;
+            }
+        }
+    }
+
+    private void addTrack() {
+        String name;
+        String artist;
+        boolean band;
+        Date date;
+        double length;
+        int rating = 0;
+        String location;
+        double size;
+        ArrayList<String> guest_artists;
+        int play_count;
+
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Artist: ");
+        artist = scanner.nextLine();
+        System.out.print("Is this song by a band? (Type true / false): ");
+        try{
+            band = scanner.nextBoolean();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid boolean");
+            scanner.nextLine();
+            addTrack();
+        }
+        date = new Date();
+        System.out.print("Enter length of track in minutes (Eg: 4.26): ");
+        try{
+            length = scanner.nextDouble();
+        } catch(InputMismatchException e){
+            System.out.println("Enter valid time: ");
+            scanner.nextLine();
+            addTrack();
+        }
+        System.out.print("Enter song rating (1-5): ");
+        try{
+            rating = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid digit");
+            scanner.nextLine();
+            addTrack();
+        }
+        if(rating>5)
+        {
+            System.out.println("Choose a rating between 1-5");
+            addTrack();
+        }
+        System.out.print("Enter file location on disk: ");
+        location = scanner.nextLine();
+
+
+    }
+
+    private void addBand() {
+        String name;
+        int established = 0;
+        ArrayList<Musician> musicians = new ArrayList<>();
+        ArrayList<String> musicianNames = new ArrayList<>();
+        System.out.println("Enter band details");
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Enter year of establishment: ");
+        try{
+            established = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid number: ");
+            scanner.nextLine();
+            addBand();
+        }
+        System.out.print("Enter names of band members (Enter x to stop): ");
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            musicianNames.add(scanner.nextLine());
+        }
+        for(String n : musicianNames){
+            for(Musician m : data.musicians){
+                if(m.getName().contains(n)){
+                    musicians.add(m);
+                }
+            }
+        }
+        Band b = new Band(name, established, musicians);
+        data.addBand(b);
+    }
+
+    private void addMusician() {
+        String name;
+        boolean band_status = false;
+        ArrayList<String> current_bands = new ArrayList<>();
+        int age = 0;
+        ArrayList<String> past_bands = new ArrayList<>();
+        ArrayList<String> roles = new ArrayList<>();
+        System.out.println("Enter musician details");
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Is " + name + " in a band? (Type true / false) ");
+        try{
+            band_status = scanner.nextBoolean();
+        } catch(InputMismatchException e){
+            System.out.print("Enter 'true' or 'false");
+            scanner.nextLine();
+            addInterface();
+        }
+        if(band_status){
+            System.out.print("Enter current bands " + name + " is part of (Type x to stop):");
+            while(!Objects.equals(scanner.nextLine(), "x")){
+                current_bands.add(scanner.nextLine());
+            }
+        }
+        System.out.print("Enter age: ");
+        try {
+            age = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid number");
+            scanner.nextLine();
+            addInterface();
+        }
+        System.out.print("Enter bands " + name + " was part of (Type x to stop):");
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            past_bands.add(scanner.nextLine());
+        }
+        System.out.print("Enter roles " + name + " performs in (Type x to stop):");
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            roles.add(scanner.nextLine());
+        }
+        Musician musician = new Musician(name,band_status,current_bands, age, past_bands, roles);
+        data.addMusician(musician);
     }
 
     public void playInterface() {

@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Track {
-
     String name;
     String artist;
-    Boolean band;
+    boolean band;
     Date date;
     double length;
     int rating;
