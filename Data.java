@@ -108,7 +108,7 @@ public class Data {
         ArrayList<String> songsByArtist = new ArrayList<>();
 
         for(Track t : tracks){
-            if(t.getArtist().equals(artistName)){
+            if(t.getArtist().contains(artistName)){
                 songsByArtist.add(t.getName());
             }
         }

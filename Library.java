@@ -11,6 +11,10 @@ public class Library {
         this.albums = albums;
     }
 
+    public Library() {
+
+    }
+
     public String getName() {
         return name;
     }

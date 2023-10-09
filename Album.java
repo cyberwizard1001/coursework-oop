@@ -17,6 +17,10 @@ public class Album {
         this.type = type;
     }
 
+    public Album() {
+
+    }
+
     public String getName() {
         return name;
     }

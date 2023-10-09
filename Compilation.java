@@ -13,6 +13,10 @@ public class Compilation extends Album {
         this.artists = artists;
     }
 
+    public Compilation() {
+
+    }
+
     @Override
     public ArrayList<String> getTracks() {
         ArrayList<Track> returnItems = new ArrayList<>(tracks);
