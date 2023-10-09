@@ -42,7 +42,12 @@ public class MusicLibrary {
         System.out.println("3. View");
         System.out.println("4. Burn to disk");
 
-        input = scanner.nextInt();
+        try {
+            input = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid number");
+            homeInterface();
+        }
 
         switch (input) {
             case 1:
@@ -81,13 +86,16 @@ public class MusicLibrary {
         System.out.println("5. Library");
         System.out.println("6. Compilation Album");
 
-        System.out.print("Choose a number: ");
-        if(scanner.hasNextInt())
+        try{
+            System.out.print("Choose a number: ");
             input1 = scanner.nextInt();
-        else{
-            System.out.println("Please enter a valid number");
+        } catch(InputMismatchException e){
+            System.out.println("Invalid character, choose a number");
+            scanner.nextLine();
             viewInterface();
         }
+
+
         switch (input1) {
             case 1: {
                 viewMusician();
@@ -115,6 +123,7 @@ public class MusicLibrary {
             }
             default:
                 System.out.println("Enter a valid number");
+                scanner.nextLine();
                 homeInterface();
         }
     }
@@ -131,7 +140,13 @@ public class MusicLibrary {
         System.out.println("6. Compilation Album");
 
         System.out.print("Choose a number: ");
-        input1 = scanner.nextInt();
+        try {
+            input1 = scanner.nextInt();
+        } catch(InputMismatchException e){
+            scanner.nextLine();
+            System.out.println("Enter a valid number");
+            addInterface();
+        }
 
         //TODO: Finish add interface
     }
@@ -146,7 +161,13 @@ public class MusicLibrary {
             System.out.println("Any key to go to home menu");
 
             System.out.print("Choose a number: ");
-            input1 = scanner.nextInt();
+            try {
+                input1 = scanner.nextInt();
+            } catch(InputMismatchException e){
+                scanner.nextLine();
+                System.out.println("Enter a valid number");
+                playInterface();
+            }
 
             if (input1 == 1) {
                 System.out.println("Universal search");
@@ -163,7 +184,13 @@ public class MusicLibrary {
                 System.out.println("Any key to go to home menu");
 
                 System.out.print("Choose a number: ");
-                input2 = scanner.nextInt();
+                try{
+                input2 = scanner.nextInt();}
+                catch(InputMismatchException e){
+                    scanner.nextLine();
+                    System.out.println("Enter a valid number");
+                    playInterface();
+                }
 
                 if (input2 == 1) {
                     int x = 1;
@@ -171,9 +198,15 @@ public class MusicLibrary {
                         System.out.println(x + " " + track.getName());
                         x++;
                     }
-
+                    int choice = 0;
                     System.out.print("Choose a number: ");
-                    int choice = scanner.nextInt();
+                    try{
+                    choice = scanner.nextInt();}
+                    catch(InputMismatchException e){
+                        scanner.nextLine();
+                        System.out.println("Enter a valid number");
+                        playInterface();
+                    }
 
                     System.out.println("Playing " + data.tracks.get(choice - 1).getName());
                     //TODO: Increment song play count by 1
@@ -183,9 +216,15 @@ public class MusicLibrary {
                         System.out.println(x + " " + album.getName());
                         x++;
                     }
-
+                    int choice = 0;
                     System.out.print("Choose a number: ");
-                    int choice = scanner.nextInt();
+                    try{
+                    choice = scanner.nextInt();}
+                    catch(InputMismatchException e){
+                        scanner.nextLine();
+                        System.out.println("Enter a valid number");
+                        playInterface();
+                    }
 
                     System.out.println("Playing from " + data.albums.get(choice - 1).getName());
                     //TODO: Increment song play count by 1
@@ -195,9 +234,16 @@ public class MusicLibrary {
                         System.out.println(x + " " + library.getName());
                         x++;
                     }
-
+                    int choice = 0;
                     System.out.print("Choose a number: ");
-                    int choice = scanner.nextInt();
+                    try {
+                        choice = scanner.nextInt();
+                    }
+                    catch(InputMismatchException e){
+                        scanner.nextLine();
+                        System.out.println("Enter a valid number");
+                        playInterface();
+                    }
 
                     System.out.println("Playing from " + data.libraries.get(choice - 1).getName());
                     //TODO: Increment song play count by 1
@@ -207,9 +253,15 @@ public class MusicLibrary {
                         System.out.println(x + " " + compilation.getName());
                         x++;
                     }
-
+                    int choice = 0;
                     System.out.print("Choose a number: ");
-                    int choice = scanner.nextInt();
+                    try {
+                        choice = scanner.nextInt();
+                    } catch (InputMismatchException e){
+                        scanner.nextLine();
+                        System.out.println("Enter a valid number");
+                        playInterface();
+                    }
 
                     System.out.println("Playing from " + data.compilations.get(choice - 1).getName());
                     //TODO: Increment song play count by 1
@@ -308,7 +360,15 @@ public class MusicLibrary {
 
         else{
             System.out.print("Enter a number to play relevant content: ");
-            choice = searchResultsString.get(scanner.nextInt()-1);
+            int num = 0;
+            try{
+                num = scanner.nextInt()-1;}
+            catch(InputMismatchException e){
+                scanner.nextLine();
+                System.out.println("Enter a number");
+                playInterface();
+            }
+            choice = searchResultsString.get(num);
             playSongFromSearch(searchResults, choice);
         }
 
@@ -401,7 +461,14 @@ public class MusicLibrary {
             x++;
         }
         System.out.print("Enter number to see tracks in compilation: ");
-        int choice = scanner.nextInt();
+        int choice = 0;
+        try {
+            choice = scanner.nextInt();
+        } catch (InputMismatchException e){
+            scanner.nextLine();
+            System.out.println("Enter a valid number");
+            viewCompilations();
+        }
         if (choice <= data.compilations.size()) {
             Compilation chosenCompilation = data.compilations.get(choice - 1);
             System.out.println("Independent Tracks:");
@@ -432,7 +499,12 @@ public class MusicLibrary {
             x++;
         }
         System.out.print("Enter number to see tracks in library: ");
-        int choice = scanner.nextInt();
+        int choice = 0;
+        try{ choice = scanner.nextInt();} catch(InputMismatchException e){
+            System.out.println("Enter a valid number");
+            scanner.nextLine();
+            viewLibraries();
+        }
         if (choice < data.libraries.size()) {
             Library chosenLib = data.libraries.get(choice - 1);
             for (Track t : chosenLib.tracks) {
@@ -462,7 +534,14 @@ public class MusicLibrary {
             x++;
         }
         System.out.print("Enter number to see tracks in album: ");
-        int choice = scanner.nextInt();
+        int choice = 0;
+        try{
+            choice = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid number");
+            scanner.nextLine();
+            viewAlbums();
+        }
         if (choice <= data.albums.size()) {
             Album chosenAlbum = data.albums.get(choice - 1);
             for (Track t : chosenAlbum.tracks) {
@@ -499,8 +578,15 @@ public class MusicLibrary {
             System.out.println(x + " " + band.getName());
             x++;
         }
-        System.out.print("\nEnter a number to see tracks by band / 0 to go back");
-        int input2 = scanner.nextInt();
+        System.out.print("\nEnter a number to see tracks by band / 0 to go back: ");
+        int input2 = 0;
+        try{
+            input2 = scanner.nextInt();
+        } catch (InputMismatchException e){
+            System.out.println("Enter a valid number");
+            scanner.nextLine();
+            viewBand();
+        }
         if (input2 == 0) {
             viewInterface();
         } else {
@@ -525,8 +611,15 @@ public class MusicLibrary {
             System.out.println(x + " " + musician.getName());
             x++;
         }
-        System.out.print("\nEnter a number to see tracks by musician / 0 to go back");
-        int input2 = scanner.nextInt();
+        System.out.print("\nEnter a number to see tracks by musician / 0 to go back: ");
+        int input2 = 0;
+        try{
+            input2 = scanner.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Enter a valid number");
+            scanner.nextLine();
+            viewMusician();
+        }
         if (input2 == 0) {
             viewInterface();
         } else {
