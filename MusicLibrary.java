@@ -42,34 +42,16 @@ public class MusicLibrary {
         tracks4.add(new Track("Track 8", "Green Day", true, new Date(), 4.10, 4, "", 3540, null));
         tracks5.add(new Track("Track 17", "The neighbourhood", true, new Date(), 4.10, 4, "", 3540, null));
 
-        data.addTrack(new Track("Track 1", "Nirmal K", false, new Date(), 4.28, 4, "", 4040, null));
-        data.addTrack(new Track("Track 2", "One Direction", true, new Date(), 4.30, 5, "", 3840, null));
-        data.addTrack(new Track("Track 1", "Nirmal K", false, new Date(), 4.28, 4, "", 4040, null));
-        data.addTrack(new Track("Track 4", "Selena Gomez", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 5", "John Legend", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 6", "John Legend", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 7", "Green Day", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 8", "Green Day", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 9", "John Legend", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 10", "S.P.Balasubramaniam", false, new Date(), 4.28, 4, "", 4040, null));
-        data.addTrack(new Track("Track 11", "Arijit Singh", true, new Date(), 4.30, 5, "", 3840, null));
-        data.addTrack(new Track("Track 12", "Arijit Singh", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 13", "Khalid", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 14", "Khalid", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 15", "Frank Ocean", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 16", "Khalid", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 18", "Justin Timberlake", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 19", "Justin Timberlake", false, new Date(), 4.28, 4, "", 4040, null));
-        data.addTrack(new Track("Track 21", "Justin Timberlake", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 22", "Linkin Park", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 23", "Linkin Park", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 24", "Maroon 5", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 25", "Maroon 5", true, new Date(), 4.25, 4, "", 3960, null));
-        data.addTrack(new Track("Track 26", "Maroon 5", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 27", "Imagine Dragons", true, new Date(), 4.10, 4, "", 3540, null));
-        data.addTrack(new Track("Track 28", "Green Day", true, new Date(), 4.10, 4, "", 3540, null));
-
-
+        data.addMusician(new Musician("Nirmal K", false, null, 23, past_bands, roles));
+        data.addMusician(new Musician("Sumithra S", true, current_bands, 23, past_bands, roles));
+        data.addMusician(new Musician("Selena Gomez", false, current_bands, 22, past_bands, roles));
+        data.addMusician(new Musician("John Legend", false, current_bands, 24, past_bands, roles));
+        data.addMusician(new Musician("S.P.Balasubramaniam", false, current_bands, 28, past_bands, roles));
+        data.addMusician(new Musician("Arijit Singh", false, current_bands, 32, past_bands, roles));
+        data.addMusician(new Musician("Frank Ocean", true, current_bands, 24, past_bands, roles));
+        data.addMusician(new Musician("Khalid", true, current_bands, 30, past_bands, roles));
+        data.addMusician(new Musician("Justin Timberlake", true, current_bands, 32, past_bands, roles));
+        data.addMusician(new Musician("Harry Styles", true, current_bands, 25, past_bands, roles));
 
         band1_musicians.add(new Musician("Sumithra S", true, current_bands, 23, past_bands, roles));
         band1_musicians.add(new Musician("Nirmal K", true, current_bands, 23, past_bands, roles));
@@ -87,39 +69,59 @@ public class MusicLibrary {
         band6_musicians.add(new Musician("Harry Styles", true, current_bands, 25, past_bands, roles));
 
 
-        data.addMusician(new Musician("Nirmal K", false, null, 23, past_bands, roles));
-        data.addMusician(new Musician("Sumithra S", true, current_bands, 23, past_bands, roles));
-        data.addMusician(new Musician("Selena Gomez", false, current_bands, 22, past_bands, roles));
-        data.addMusician(new Musician("John Legend", false, current_bands, 24, past_bands, roles));
-        data.addMusician(new Musician("S.P.Balasubramaniam", false, current_bands, 28, past_bands, roles));
-        data.addMusician(new Musician("Arijit Singh", false, current_bands, 32, past_bands, roles));
-        data.addMusician(new Musician("Frank Ocean", true, current_bands, 24, past_bands, roles));
-        data.addMusician(new Musician("Khalid", true, current_bands, 30, past_bands, roles));
-        data.addMusician(new Musician("Justin Timberlake", true, current_bands, 32, past_bands, roles));
-        data.addMusician(new Musician("Harry Styles", true, current_bands, 25, past_bands, roles));
-
         data.addBand(new Band("Green Day", 2001, band1_musicians));
         data.addBand(new Band("One Direction", 2001, band2_musicians));
         data.addBand(new Band("Imagine Dragons", 2004, band3_musicians));
         data.addBand(new Band("The neighbourhood", 2010, band4_musicians));
         data.addBand(new Band("Linkin Park", 2005, band5_musicians));
-        data.addBand(new Band("Maroon 5", 2012, band6_musicians));
+        data.addBand(new Band("Maroon 5", 2012, band6_musicians)); //okay
+
+
+        data.addTrack(new Track("Track 1", "Nirmal K", false, new Date(), 4.28, 4, "", 4040, null));
+        data.addTrack(new Track("Track 2", "One Direction", true, new Date(), 4.30, 5, "", 3840, null));
+        data.addTrack(new Track("Track 3", "Nirmal K", false, new Date(), 4.28, 4, "", 4040, null));
+        data.addTrack(new Track("Track 4", "Selena Gomez", false, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 5", "John Legend", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 6", "John Legend", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 7", "Green Day", true, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 8", "Green Day", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 9", "John Legend", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 10", "S.P.Balasubramaniam", false, new Date(), 4.28, 4, "", 4040, null));
+        data.addTrack(new Track("Track 11", "Arijit Singh", false, new Date(), 4.30, 5, "", 3840, null));
+        data.addTrack(new Track("Track 12", "Arijit Singh", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 13", "Khalid", false, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 14", "Khalid", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 15", "Frank Ocean", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 16", "Khalid", false, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 17", "The neighbourhood", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 18", "Justin Timberlake", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 19", "Justin Timberlake", false, new Date(), 4.28, 4, "", 4040, null));
+        data.addTrack(new Track("Track 20", "One Direction", true, new Date(), 4.30, 5, "", 3840, null));
+        data.addTrack(new Track("Track 21", "Justin Timberlake", false, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 22", "Linkin Park", true, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 23", "Linkin Park", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 24", "Maroon 5", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 25", "Maroon 5", true, new Date(), 4.25, 4, "", 3960, null));
+        data.addTrack(new Track("Track 26", "Maroon 5", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 27", "Imagine Dragons", true, new Date(), 4.10, 4, "", 3540, null));
+        data.addTrack(new Track("Track 28", "Green Day", true, new Date(), 4.10, 4, "", 3540, null));
 
 
 
         albums.add(new Album("Maroon 5", tracks, "Melody"));
+        albums.add(new Album("One Direction", tracks2, "Melody"));
 
-        data.addAlbum(new Album("Album 1", tracks, "Melody"));
-        data.addAlbum(new Album("Green Day", tracks1, "Melody"));
-        data.addAlbum(new Album("One Direction", tracks2, "Melody"));
-        data.addAlbum(new Album("Imagine Dragons", tracks3, "Melody"));
-        data.addAlbum(new Album("The neighbourhood", tracks4, "Melody"));
-        data.addAlbum(new Album("Linkin Park", tracks5, "Melody"));
+        data.addAlbum(new Album("Maroon 5", tracks, "Melody")); //okay
+        data.addAlbum(new Album("Green Day", tracks1, "Melody")); //no
+        data.addAlbum(new Album("One Direction", tracks2, "Melody")); //okay
+        data.addAlbum(new Album("Imagine Dragons", tracks3, "Melody")); //okay
+        data.addAlbum(new Album("The neighbourhood", tracks4, "Melody")); //okay
+        data.addAlbum(new Album("Linkin Park", tracks5, "Melody")); //no
         //data.removeTrack("Track 2");
 
         data.addLibrary(new Library("Library 1", tracks, albums));
 
-        data.addCompilation(new Compilation("Compilation 1", albums, tracks, null));
+        data.addCompilation(new Compilation("Compilation 1", albums, tracks2, null));
     }
     public void homeInterface() {
         int input = 0;
