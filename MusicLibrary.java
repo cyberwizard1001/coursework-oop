@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class MusicLibrary {
@@ -166,32 +170,132 @@ public class MusicLibrary {
                 break;
             }
             case 4: {
+                addAlbum();
                 break;
             }
             case 5: {
+                addLibrary();
                 break;
             }
             case 6: {
+                addCompilation();
                 break;
             }
             case 7: {
+                homeInterface();
                 break;
             }
         }
     }
 
+    private void addCompilation() {
+        String name;
+        ArrayList<Album> albums = new ArrayList<>();
+        ArrayList<Track> tracks = new ArrayList<>();
+        ArrayList<String> artists = new ArrayList<>();
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Enter names of tracks (Enter x to stop): ");
+        ArrayList<String> trackNames = new ArrayList<>();
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            trackNames.add(scanner.nextLine());
+        }
+        for(String n : trackNames){
+            for(Track t : data.tracks){
+                if(t.getName().contains(n)){
+                    tracks.add(t);
+                }
+            }
+        }
+        System.out.print("Enter names of albums (Enter x to stop): ");
+        ArrayList<String> albumNames = new ArrayList<>();
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            albumNames.add(scanner.nextLine());
+        }
+        for(String n : albumNames){
+            for(Album a : data.albums){
+                if(a.getName().contains(n)){
+                    albums.add(a);
+                }
+            }
+        }
+        System.out.print("Enter names of compilation artists (Enter x to stop): ");
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            artists.add(scanner.nextLine());
+        }
+        Compilation finalCompilation = new Compilation(name, albums, tracks, artists);
+        data.addCompilation(finalCompilation);
+    }
+
+    private void addLibrary() {
+        String name;
+        ArrayList<Track> tracks = new ArrayList<>();
+        ArrayList<Album> albums = new ArrayList<>();
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Enter names of tracks (Enter x to stop): ");
+        ArrayList<String> trackNames = new ArrayList<>();
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            trackNames.add(scanner.nextLine());
+        }
+        for(String n : trackNames){
+            for(Track t : data.tracks){
+                if(t.getName().contains(n)){
+                    tracks.add(t);
+                }
+            }
+        }
+        System.out.print("Enter names of albums (Enter x to stop): ");
+        ArrayList<String> albumNames = new ArrayList<>();
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            albumNames.add(scanner.nextLine());
+        }
+        for(String n : albumNames){
+            for(Album a : data.albums){
+                if(a.getName().contains(n)){
+                    albums.add(a);
+                }
+            }
+        }
+        Library finalLibrary = new Library(name, tracks, albums);
+        data.addLibrary(finalLibrary);
+    }
+
+    private void addAlbum() {
+        String name;
+        ArrayList<Track> tracks = new ArrayList<>();
+        String type;
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+        System.out.print("Enter names of tracks (Enter x to stop): ");
+        ArrayList<String> trackNames = new ArrayList<>();
+        while(!Objects.equals(scanner.nextLine(), "x")){
+            trackNames.add(scanner.nextLine());
+        }
+        for(String n : trackNames){
+            for(Track t : data.tracks){
+                if(t.getName().contains(n)){
+                    tracks.add(t);
+                }
+            }
+        }
+        System.out.print("Type: ");
+        type = scanner.nextLine();
+        Album finalAlbum = new Album(name, tracks, type);
+        data.addAlbum(finalAlbum);
+    }
+
     private void addTrack() {
         String name;
         String artist;
-        boolean band;
+        boolean band = false;
         Date date;
-        double length;
+        double length = 0.0;
         int rating = 0;
         String location;
-        double size;
-        ArrayList<String> guest_artists;
-        int play_count;
-
+        double size = 0;
+        ArrayList<String> guest_artists = new ArrayList<>();
+        scanner.nextLine();
         System.out.print("Name: ");
         name = scanner.nextLine();
         System.out.print("Artist: ");
@@ -226,10 +330,11 @@ public class MusicLibrary {
             System.out.println("Choose a rating between 1-5");
             addTrack();
         }
+        scanner.nextLine();
         System.out.print("Enter file location on disk: ");
         location = scanner.nextLine();
-
-
+        Track finalTrack = new Track(name, artist, band, date, length, rating, location, size, guest_artists);
+        data.addTrack(finalTrack);
     }
 
     private void addBand() {
@@ -326,6 +431,7 @@ public class MusicLibrary {
             }
 
             if (input1 == 1) {
+                scanner.nextLine();
                 System.out.println("Universal search");
                 System.out.print("Enter a string: ");
                 String searchString = scanner.nextLine();
@@ -365,7 +471,7 @@ public class MusicLibrary {
                     }
 
                     System.out.println("Playing " + data.tracks.get(choice - 1).getName());
-                    //TODO: Increment song play count by 1
+                    incrementSongPlayCount(data.tracks.get(choice - 1));
                 } else if (input2 == 2) {
                     int x = 1;
                     for (Album album : data.albums) {
@@ -383,7 +489,10 @@ public class MusicLibrary {
                     }
 
                     System.out.println("Playing from " + data.albums.get(choice - 1).getName());
-                    //TODO: Increment song play count by 1
+                    for(Track t : data.albums.get(choice-1).tracks){
+                        System.out.println("Song: " + t.getName());
+                        incrementSongPlayCount(t);
+                    }
                 } else if (input2 == 3) {
                     int x = 1;
                     for (Library library : data.libraries) {
@@ -402,7 +511,17 @@ public class MusicLibrary {
                     }
 
                     System.out.println("Playing from " + data.libraries.get(choice - 1).getName());
-                    //TODO: Increment song play count by 1
+                    for(Track t : data.libraries.get(choice - 1).tracks){
+                        System.out.println("Song: " + t.getName());
+                        incrementSongPlayCount(t);
+
+                    }
+                    for(Album a : data.libraries.get(choice - 1).albums){
+                        for(Track t : a.tracks){
+                            System.out.println("Song: " + t.getName());
+                            incrementSongPlayCount(t);
+                        }
+                    }
                 } else if (input2 == 4) {
                     int x = 1;
                     for (Compilation compilation : data.compilations) {
@@ -420,7 +539,17 @@ public class MusicLibrary {
                     }
 
                     System.out.println("Playing from " + data.compilations.get(choice - 1).getName());
-                    //TODO: Increment song play count by 1
+                    for(Track t : data.compilations.get(choice-1).tracks){
+                        System.out.println("Song: " + t.getName());
+                        incrementSongPlayCount(t);
+
+                    }
+                    for(Album a : data.compilations.get(choice-1).albums){
+                        for(Track t : a.tracks){
+                            System.out.println("Song: " + t.getName());
+                            incrementSongPlayCount(t);
+                        }
+                    }
                 } else {
                     System.out.println("Going back...");
                     break;
@@ -434,6 +563,50 @@ public class MusicLibrary {
 
         }
 
+
+    }
+
+    private void incrementSongPlayCount(Track track){
+        String filePath = "tracks.txt";
+        String toReplace = "";
+        Scanner fileScanner = null;
+        try {
+            fileScanner = new Scanner(new File(filePath));
+        } catch(FileNotFoundException e){
+            System.out.println("Couldn't find play_count file");
+            homeInterface();
+        }
+        StringBuilder stringBuffer = new StringBuilder();
+        while(true){
+            assert fileScanner != null;
+            if (!fileScanner.hasNextLine()) break;
+            stringBuffer.append(fileScanner.nextLine()).append(System.lineSeparator());
+        }
+        String fileContents = stringBuffer.toString();
+        String trackName = track.getName();
+        if(fileContents.contains(trackName)){
+            int trackIndex = fileContents.indexOf(trackName);
+            toReplace = fileContents.substring(trackIndex,(trackIndex+trackName.length()+3));
+
+            String prevCountString = toReplace.replace(trackName, "");
+
+            prevCountString = prevCountString.replaceAll("[^0-9]", "");
+
+            track.play_count = Integer.parseInt(prevCountString) + 1;
+            String replacement = trackName + " " + track.play_count;
+            fileContents = fileContents.replaceAll(toReplace, replacement);
+            System.out.println("Play count: " + track.play_count);
+            try {
+                FileWriter writer = new FileWriter(filePath);
+                writer.append(fileContents);
+                writer.flush();
+            } catch(IOException e){
+                System.out.println("Error reading file");
+            }
+        }
+        else{
+            System.out.println("Song not found on record, cannot play");
+        }
 
     }
 
@@ -538,14 +711,20 @@ public class MusicLibrary {
                 System.out.println("Playing songs from " + choice);
                 for(Track t : data.tracks){
                     if(t.getArtist().contains(choice)){
-                        //TODO: Write code to increment song count by 1
+                        incrementSongPlayCount(t);
                     }
                 }
                 break;
             }
             case "Track": {
                 System.out.println("Playing song " + choice);
-                //TODO: WRite code to increment song count by 1
+                for(Track t: data.tracks){
+                    if(t.getName().contains(choice)){
+                        incrementSongPlayCount(t);
+                        break;
+                    }
+                }
+
                 break;
             }
             case "Album": {
@@ -559,7 +738,7 @@ public class MusicLibrary {
                 }
                 for(Track t : selectedAlbum.tracks){
                     System.out.println("Song: " + t.getName());
-                    //TODO: WRite code to increment song count by 1
+                    incrementSongPlayCount(t);
                 }
                 break;
             }
@@ -574,13 +753,13 @@ public class MusicLibrary {
                 }
                 for(Track t : selectedLibrary.tracks){
                     System.out.println("Song: " + t.getName());
-                    //TODO: WRite code to increment song count by 1
+                    incrementSongPlayCount(t);
 
                 }
                 for(Album a : selectedLibrary.albums){
                     for(Track t : a.tracks){
                         System.out.println("Song: " + t.getName());
-                        //TODO: WRite code to increment song count by 1
+                        incrementSongPlayCount(t);
                     }
                 }
                 break;
@@ -596,13 +775,13 @@ public class MusicLibrary {
                 }
                 for(Track t : selectedCompilation.tracks){
                     System.out.println("Song: " + t.getName());
-                    //TODO: WRite code to increment song count by 1
+                    incrementSongPlayCount(t);
 
                 }
                 for(Album a : selectedCompilation.albums){
                     for(Track t : a.tracks){
                         System.out.println("Song: " + t.getName());
-                        //TODO: WRite code to increment song count by 1
+                        incrementSongPlayCount(t);
                     }
                 }
                 break;
@@ -713,7 +892,7 @@ public class MusicLibrary {
         }
     }
 
-    private void viewTracks() {
+    public void viewTracks() {
         int x = 1;
         for (Track t : data.tracks) {
             System.out.println(x + " " + t.getName());

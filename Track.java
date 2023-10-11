@@ -24,18 +24,8 @@ public class Track {
         this.size = size;
         this.guest_artists = guest_artists;
         this.play_count = 0;
-        this.checkDetails();
     }
 
-    private boolean checkDetails() {
-        boolean valid = false;
-
-        if (this.band) {
-
-        }
-
-        return valid;
-    }
 
     public String getName() {
         return name;

@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
@@ -58,13 +60,26 @@ public class Data {
     //Track
     public void addTrack(Track track) {
         boolean added = false;
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("tracks.txt", true);
+        } catch(IOException e){
+            System.out.println("Unable to open file to add track");
+            System.out.println("Track not added");
+        }
         if (track.band) {
             for (Band band : bands) {
                 String bandName = band.getName();
                 if (bandName.equals(track.artist)) {
                     tracks.add(track);
                     added = true;
-                    System.out.println("Track " + track.name + " added.");
+                    try {
+                        assert fileWriter != null;
+                        fileWriter.append(track.getName()).append(" ").append(String.valueOf(0));
+                        System.out.println("Track " + track.name + " added.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 }
             }
@@ -74,7 +89,12 @@ public class Data {
                 if (musicianName.equals(track.artist)) {
                     tracks.add(track);
                     added = true;
-                    System.out.println("Track " + track.name + " added.");
+                    try {
+                        fileWriter.append(track.getName()).append(" ").append(String.valueOf(0));
+                        System.out.println("Track " + track.name + " added.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 }
             }
