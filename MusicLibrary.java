@@ -163,7 +163,8 @@ public class MusicLibrary {
 
     private void burnInterface() {
 
-        //TODO: Write method
+        BurnInterface burnInterface = new BurnInterface(data);
+        burnInterface.burnInterface();
     }
 
     private void viewInterface() {
@@ -242,34 +243,27 @@ public class MusicLibrary {
             addInterface();
         }
 
-        switch(input1){
-            case 1: {
+        switch (input1) {
+            case 1 -> {
                 addMusician();
-                break;
             }
-            case 2: {
+            case 2 -> {
                 addBand();
-                break;
             }
-            case 3: {
+            case 3 -> {
                 addTrack();
-                break;
             }
-            case 4: {
+            case 4 -> {
                 addAlbum();
-                break;
             }
-            case 5: {
+            case 5 -> {
                 addLibrary();
-                break;
             }
-            case 6: {
+            case 6 -> {
                 addCompilation();
-                break;
             }
-            case 7: {
+            case 7 -> {
                 homeInterface();
-                break;
             }
         }
     }
