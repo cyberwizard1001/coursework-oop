@@ -63,20 +63,20 @@ public class Data {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter("tracks.txt", true);
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Unable to open file to add track");
             System.out.println("Track not added");
         }
         if (track.band) {
             for (Band band : bands) {
                 String bandName = band.getName();
-                if (bandName.equals(track.artist)) {
+                if (bandName.equals(track.getArtist())) {
                     tracks.add(track);
                     added = true;
                     try {
                         assert fileWriter != null;
                         fileWriter.append(track.getName()).append(" ").append(String.valueOf(0));
-                        System.out.println("Track " + track.name + " added.");
+                        System.out.println("Track " + track.getName() + " added.");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -86,12 +86,12 @@ public class Data {
         } else {
             for (Musician musician : musicians) {
                 String musicianName = musician.getName();
-                if (musicianName.equals(track.artist)) {
+                if (musicianName.equals(track.getArtist())) {
                     tracks.add(track);
                     added = true;
                     try {
                         fileWriter.append(track.getName()).append(" ").append(String.valueOf(0));
-                        System.out.println("Track " + track.name + " added.");
+                        System.out.println("Track " + track.getName() + " added.");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -127,8 +127,8 @@ public class Data {
     public ArrayList<String> listSongsByArtist(String artistName) {
         ArrayList<String> songsByArtist = new ArrayList<>();
 
-        for(Track t : tracks){
-            if(t.getArtist().contains(artistName)){
+        for (Track t : tracks) {
+            if (t.getArtist().contains(artistName)) {
                 songsByArtist.add(t.getName());
             }
         }
@@ -143,10 +143,10 @@ public class Data {
         ArrayList<Track> albumTracks = album.tracks;
         boolean add = true;
         for (Track track : albumTracks) {
-            String trackName = track.name;
+            String trackName = track.getName();
             boolean exists = false;
             for (Track t : tracks) {
-                if (Objects.equals(t.name, trackName)) {
+                if (Objects.equals(t.getName(), trackName)) {
                     exists = true;
                     break;
                 }
@@ -172,10 +172,10 @@ public class Data {
         ArrayList<Album> libraryAlbums = library.albums;
 
         for (Track track : libraryTracks) {
-            String trackName = track.name;
+            String trackName = track.getName();
             boolean exists = false;
             for (Track t : tracks) {
-                if (Objects.equals(t.name, trackName)) {
+                if (Objects.equals(t.getName(), trackName)) {
                     exists = true;
 //                    System.out.println(trackName);
                     break;
@@ -219,10 +219,10 @@ public class Data {
         ArrayList<Album> compilationAlbums = compilation.albums;
 
         for (Track track : compilationTracks) {
-            String trackName = track.name;
+            String trackName = track.getName();
             boolean exists = false;
             for (Track t : tracks) {
-                if (Objects.equals(t.name, trackName)) {
+                if (Objects.equals(t.getName(), trackName)) {
                     exists = true;
 //                    System.out.println(trackName);
                     break;

@@ -36,7 +36,7 @@ public class Test {
         musician1.setAge(21);
         musician1.setBandStatus(true);
         musician1.updatePastBands("One Direction");
-        musician1.setCurrent_bands(current_bands2);
+        musician1.setCurrentBands(current_bands2);
 
 //        System.out.println("Musician 1 post set methods: ");
 //        System.out.println("Name: " + musician1.getName());
