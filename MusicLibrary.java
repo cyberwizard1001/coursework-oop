@@ -678,10 +678,10 @@ public class MusicLibrary {
 
             prevCountString = prevCountString.replaceAll("[^0-9]", "");
 
-            track.play_count = Integer.parseInt(prevCountString) + 1;
-            String replacement = trackName + " " + track.play_count;
+            track.playCount = Integer.parseInt(prevCountString) + 1;
+            String replacement = trackName + " " + track.playCount;
             fileContents = fileContents.replaceAll(toReplace, replacement);
-            System.out.println("Play count: " + track.play_count);
+            System.out.println("Play count: " + track.playCount);
             try {
                 FileWriter writer = new FileWriter(filePath);
                 writer.append(fileContents);
