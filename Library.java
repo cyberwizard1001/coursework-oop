@@ -8,7 +8,7 @@ public class Library {
     /**
      * Stores the name of the library.
      */
-    String name;
+    private String name;
 
     /**
      * Stores a list of individual tracks in the library.

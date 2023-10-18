@@ -8,7 +8,7 @@ public class Album {
     /**
      * Stores the name of the album.
      */
-    String name;
+    private String name;
 
     /**
      * Stores a list of tracks that are part of the album.
@@ -18,7 +18,7 @@ public class Album {
     /**
      * Stores the type or genre of the album.
      */
-    String type;
+    private String type;
 
     /**
      * Constructor to create an album with a name, list of tracks, and type.

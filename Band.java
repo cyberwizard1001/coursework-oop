@@ -8,17 +8,17 @@ public class Band {
     /**
      * Stores the name of the band.
      */
-    String name;
+    private String name;
 
     /**
      * Stores the year the band was established.
      */
-    int established;
+    private int established;
 
     /**
      * Stores a list of musicians who are members of the band.
      */
-    ArrayList<Musician> musicians;
+    private ArrayList<Musician> musicians;
 
     /**
      * Creates a new instance of the `Band` class with the specified name, establishment year, and list of musicians.
