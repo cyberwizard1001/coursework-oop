@@ -131,6 +131,7 @@ public class MusicLibrary {
         System.out.println("2. Play");
         System.out.println("3. View");
         System.out.println("4. Burn to disk");
+        System.out.println("5. View some statistics");
 
         try {
             input = scanner.nextInt();
@@ -152,12 +153,26 @@ public class MusicLibrary {
             case 4:
                 burnInterface();
                 break;
+            case 5:
+                viewStatistics();
             default: {
                 System.out.println("Error, try again!");
                 homeInterface();
                 break;
             }
 
+        }
+    }
+
+    private void viewStatistics() {
+        System.out.println("Album lengths");
+        for (Album a:data.albums) {
+            System.out.println(a.getName() + ": " + a.calculateTotalRunTime());
+        }
+        System.out.println("Album disk size");
+        for (Album a:data.albums)
+        {
+            System.out.println(a.getName() + ": " + a.calculateTotalSize());
         }
     }
 
