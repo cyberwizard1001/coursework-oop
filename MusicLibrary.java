@@ -163,7 +163,8 @@ public class MusicLibrary {
 
     private void burnInterface() {
 
-        //TODO: Write method
+        BurnInterface burnInterface = new BurnInterface(data);
+        burnInterface.burnInterface();
     }
 
     private void viewInterface() {
@@ -188,37 +189,34 @@ public class MusicLibrary {
 
 
         switch (input1) {
-            case 1: {
+            case 1 -> {
                 viewMusician();
-                break;
+
             }
-            case 2: {
+            case 2 -> {
                 viewBand();
-                break;
             }
-            case 3: {
+            case 3 -> {
                 viewTracks();
-                break;
             }
-            case 4: {
+            case 4 -> {
                 viewAlbums();
-                break;
             }
-            case 5: {
+            case 5 -> {
                 viewLibraries();
-                break;
             }
-            case 6: {
+            case 6 -> {
                 viewCompilations();
-                break;
             }
-            case 7: {
+            case 7 -> {
                 homeInterface();
             }
-            default:
+            default -> {
                 System.out.println("Enter a valid number");
                 scanner.nextLine();
                 homeInterface();
+            }
+
         }
     }
 
