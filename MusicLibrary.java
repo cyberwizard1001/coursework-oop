@@ -155,6 +155,7 @@ public class MusicLibrary {
                 break;
             case 5:
                 viewStatistics();
+                break;
             default: {
                 System.out.println("Error, try again!");
                 homeInterface();
